@@ -15,7 +15,12 @@ class Tree:
     @param nome nome da categoria a adicionar
     @node_ID id da categoria pai'''
     def add_node(self, val, nome, node_ID = 0):
+        if(self.find_node(node_ID) == None):
+            return None
+        if(self.find_node(val))!= None:
+            return None
         self.find_node(node_ID).nodes.append(Tree(val, nome))
+        return self
 
     '''compara valor dado com o dos nodes filhos ate encontrar o node a remover
     testa os valores dos nodes filhos
@@ -31,7 +36,7 @@ class Tree:
                     cat.nodes.remove(testing)
                     return cat
             queue.extend(cat.nodes)
-        return self
+        return None
     
     '''procura node dando prioridade aos nodes do mesmo nivel (aka leitura horizontal)
     procura nos filhos dos nodes e caso nao encontre
@@ -40,7 +45,8 @@ class Tree:
     @param val id da categoria a adicionar    
     @return node caso encontrado ou root caso contrario'''        
     def find_node(self, val):
-        queue = []
+        queue = [self]
+
         if self.val == 0:
             queue.extend(self.nodes)
 
@@ -49,20 +55,21 @@ class Tree:
                 return cat
             else:
                 queue.extend(cat.nodes)
-        return self
+        return None
     
     '''representacao do node em string
     @param self node actual
     @return string formatada'''
     def __repr__(self):
-        return "(%s)%s : {%s}" % (self.val, self.nome, self.nodes)
+        return "(%s)%s : %s" % (self.val, self.nome, self.nodes)
 
 
 a = Tree(0, "root")
 a.add_node(1, "cat1")
+a.add_node(1, "cat1")
 a.add_node(2, "cat2")
 a.add_node(3, "cat3")
-a.nodes[2].add_node(4, "cat4")
+a.add_node(4, "cat4", 3)
 print(a)
 a.add_node(5, "cat5", 4)
 print(a)
