@@ -1,3 +1,7 @@
+'''
+@author: Marco André de Matos Pereira Gomes
+@Date: 13/05/2021
+'''
 BOMBA = False
 CLEANSE = False
 import mysql.connector

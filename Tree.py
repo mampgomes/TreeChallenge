@@ -1,3 +1,7 @@
+'''
+@author: Marco André de Matos Pereira Gomes
+@Date: 13/05/2021
+'''
 class Tree:
     '''criacao de node
     @param self node actual
